@@ -14,7 +14,7 @@
         <span class="btn-icon">📄</span>
         Download CV
       </button>
-      <button class="nav-btn lets-chat" (click)="scrollToChat()">
+      <button class="nav-btn lets-chat" href="https://wa.me/923487350330?text=I'm%20interested%20in%20your%20portfolio">
         <span class="btn-icon">💬</span>
         Let's Chat
       </button>
@@ -50,8 +50,68 @@
 </header>
 
   <section class="chat-section">
+     <h2 class="experience-title">AI Chat Assistant</h2>
+      <p class="experience-subtitle">AI-powered development assistant</p>
     <app-chat></app-chat>
   </section>
+
+
+
+
+    <!-- Experience Section -->
+  <section class="experience-section">
+    <div class="experience-container">
+      <h2 class="experience-title">Professional Experience</h2>
+      <p class="experience-subtitle">1+ years of backend development expertise</p>
+      
+      <div class="experience-timeline">
+        <!-- Current Role -->
+        <div class="experience-item">
+          <div class="experience-header">
+            <div class="experience-badge current">Current</div>
+            <div class="experience-date">Jan 2025 - Present</div>
+          </div>
+          <div class="experience-content">
+            <h3 class="company-name">TeReSol</h3>
+            <h4 class="job-title">Software Design Engineer</h4>
+            <p class="job-description">
+              Currently working as a Software Design Engineer at TeReSol, specializing in Core Banking solutions for Bank Al Habib. Developing Credit Management modules and Consumer Management System using Java and Quarkus for backend services. Implementing state management with XSTATE for complex banking workflows and business processes. Contributing to secure, scalable banking systems with compliance to financial standards.
+            </p>
+            <div class="tech-stack">
+              <span class="stack-tag">Java</span>
+              <span class="stack-tag">Quarkus</span>
+              <span class="stack-tag">JavaScript</span>
+              <span class="stack-tag">XSTATE</span>
+              <span class="stack-tag">Banking Systems</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Previous Role -->
+        <div class="experience-item">
+          <div class="experience-header">
+            <div class="experience-badge">Internship</div>
+            <div class="experience-date">Aug 2023 - Oct 2023</div>
+          </div>
+          <div class="experience-content">
+            <h3 class="company-name">TechnoGate</h3>
+            <h4 class="job-title">Junior Java Intern</h4>
+            <p class="job-description">
+              During my internship, I developed a Loan Management System using Java and Spring Boot framework. Implemented RESTful APIs for loan processing, approval workflows, and customer management. Gained hands-on experience in backend development, database design, and application security. Contributed to building scalable financial solutions with proper documentation and testing.
+            </p>
+            <div class="tech-stack">
+              <span class="stack-tag">Spring Boot</span>
+              <span class="stack-tag">Java</span>
+              <span class="stack-tag">REST APIs</span>
+              <span class="stack-tag">MySQL</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
 
   <footer class="portfolio-footer">
     <p>&copy; 2024 Ehsan Ul Khaliq. Backend Developer specializing in Java and Banking Systems.</p>

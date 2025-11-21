@@ -20,17 +20,10 @@ export class App {
     // Create a temporary link to trigger download
     const link = document.createElement('a');
     link.href = cvUrl;
-    link.download = 'Ehsan_Ul_Khaliq_CV.pdf';
+    link.download = 'Ehsan_Ul_Khaliq.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   }
 
-  scrollToChat() {
-    // Scroll to the chat section smoothly
-    this.chatSection.nativeElement.scrollIntoView({ 
-      behavior: 'smooth',
-      block: 'start'
-    });
-  }
 }
