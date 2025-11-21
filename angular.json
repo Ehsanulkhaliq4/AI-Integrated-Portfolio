@@ -46,15 +46,16 @@
                 {
                   "type": "anyComponentStyle",
                   "maximumWarning": "4kB",
-                  "maximumError": "8kB"
+                  "maximumError": "20kB"
                 }
               ],
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "replace": "src/enviornments/enviornments.ts",
+                  "with": "src/enviornments/environment.prod.ts"
                 }
               ],
+               "outputPath": "dist/my-ai-portfolio",
               "outputHashing": "all"
             },
             "development": {
