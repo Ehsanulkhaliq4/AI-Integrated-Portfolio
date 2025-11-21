@@ -3,7 +3,7 @@ const path = require('path');
 
 console.log('Starting environment variable replacement...');
 
-const envFilePath = path.join(__dirname, 'src', 'environments', 'environment.prod.ts');
+const envFilePath = path.join(__dirname, 'src', 'enviornments', 'environment.prod.ts');
 
 // Check if file exists
 if (!fs.existsSync(envFilePath)) {
