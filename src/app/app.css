@@ -1,0 +1,444 @@
+/* Navbar Css */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.navbar:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-bottom-color: rgba(255, 255, 255, 0.15);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+}
+
+/* Left side */
+.nav-left {
+  display: flex;
+  align-items: center;
+  margin-left: -7px;
+}
+
+.nav-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-profile .nav-picture {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.nav-profile .nav-picture:hover {
+  border-color: rgba(255, 255, 255, 0.6);
+  transform: scale(1.05);
+}
+
+.nav-profile .nav-name {
+  font-size: 1.3rem;
+  font-weight: 600;
+  background: linear-gradient(45deg, #fff, #f0f4ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.5px;
+}
+
+/* Right side */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.nav-btn .btn-icon {
+  font-size: 16px;
+}
+
+/* Button: Download CV */
+.nav-btn.download-cv {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.nav-btn.download-cv:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Button: Let's Chat */
+.nav-btn.lets-chat {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.nav-btn.lets-chat:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+
+.nav-btn:active {
+  transform: translateY(0);
+}
+
+/* Portfolio Container - Normal flow */
+.portfolio-container {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Hero Section with 95vh height and bigger image */
+.hero-section {
+  color: white;
+  height: 82vh;
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-section .hero-content {
+  max-width: 1400px; /* Increased max-width */
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 80px; /* Increased gap */
+  width: 100%;
+  padding: 0 40px;
+}
+
+/* Bigger Image Section */
+.hero-image {
+  flex: 0 0 400px; /* Increased from 280px */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-image .profile-image {
+  width: 400px; /* Increased from 280px */
+  height: 400px; /* Increased from 280px */
+  border-radius: 50%;
+  object-fit: cover;
+  border: 8px solid rgba(255, 255, 255, 0.25); /* Thicker border */
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3); /* Enhanced shadow */
+  transition: all 0.4s ease;
+  filter: brightness(1.05) contrast(1.1); /* Enhanced image quality */
+}
+
+.hero-image .profile-image:hover {
+  transform: translateY(-8px) scale(1.03); /* Enhanced hover effect */
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.4);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Enhanced Details Section */
+.hero-details {
+  flex: 1;
+  max-width: 700px; /* Limit width for better readability */
+}
+
+.hero-details .hero-title {
+  font-size: 3rem; /* Increased from 3rem */
+  font-weight: 800; /* Bolder */
+  margin-bottom: 20px;
+  background: linear-gradient(45deg, #fff, #f0f4ff, #e6f0ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.1;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.hero-details .hero-subtitle {
+  font-size: 1.5rem; /* Increased from 1.3rem */
+  opacity: 0.95;
+  margin-bottom: 25px;
+  font-weight: 600; /* Bolder */
+  color: #f0f4ff;
+  letter-spacing: 0.5px;
+}
+
+.hero-details .hero-description {
+  font-size: 1.2rem; /* Increased from 1rem */
+  opacity: 0.9;
+  line-height: 1.7;
+  margin-bottom: 35px;
+  max-width: 650px;
+  font-weight: 400;
+  color: #e6f0ff;
+}
+
+/* Enhanced Tech Tags */
+.hero-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 35px;
+}
+
+.tech-tag {
+  background: rgba(255, 255, 255, 0.2); /* More visible */
+  padding: 10px 15px; /* Larger padding */
+  border-radius: 25px;
+  font-size: 15px; /* Larger font */
+  font-weight: 600; /* Bolder */
+  backdrop-filter: blur(15px);
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+  color: white;
+}
+
+.tech-tag:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Chat Section - Normal position below hero */
+.chat-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 20px;
+}
+
+/* Footer - Normal position */
+.portfolio-footer {
+  text-align: center;
+  color: white;
+  opacity: 0.7;
+  padding: 60px 20px;
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.portfolio-footer p {
+  margin: 0 0 16px 0;
+  font-size: 14px;
+}
+
+.contact-links {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.contact-links span {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Responsive Design for Bigger Layout */
+@media (max-width: 1200px) {
+  .hero-section .hero-content {
+    max-width: 1100px;
+    gap: 60px;
+    padding: 0 30px;
+  }
+  
+  .hero-image {
+    flex: 0 0 350px;
+  }
+  
+  .hero-image .profile-image {
+    width: 350px;
+    height: 350px;
+  }
+  
+  .hero-details .hero-title {
+    font-size: 3.5rem;
+  }
+  
+  .hero-details .hero-subtitle {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 968px) {
+  .hero-section .hero-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 50px;
+    padding: 0 20px;
+  }
+
+  .hero-image {
+    flex: 0 0 300px;
+  }
+
+  .hero-image .profile-image {
+    width: 300px;
+    height: 300px;
+  }
+
+  .hero-details .hero-title {
+    font-size: 3rem;
+  }
+
+  .hero-details .hero-subtitle {
+    font-size: 1.4rem;
+  }
+  
+  .hero-details .hero-description {
+    font-size: 1.1rem;
+    margin: 0 auto 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    height: 95vh;
+    padding: 0 15px;
+  }
+  
+  .hero-section .hero-content {
+    gap: 40px;
+  }
+
+  .hero-details .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-details .hero-subtitle {
+    font-size: 1.2rem;
+  }
+
+  .hero-details .hero-description {
+    font-size: 1rem;
+  }
+
+  .hero-tech {
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .tech-tag {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .contact-links {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .contact-links span {
+    justify-content: center;
+  }
+
+  .chat-section {
+    padding: 60px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    height: 95vh;
+    padding: 0 10px;
+  }
+  
+  .hero-section .hero-content {
+    gap: 30px;
+  }
+
+  .hero-details .hero-title {
+    font-size: 2.2rem;
+  }
+
+  .hero-details .hero-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .hero-image {
+    flex: 0 0 250px;
+  }
+
+  .hero-image .profile-image {
+    width: 250px;
+    height: 250px;
+    border-width: 6px;
+  }
+
+  .tech-tag {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .portfolio-footer {
+    padding: 40px 15px;
+  }
+}
+
+/* For very small screens */
+@media (max-height: 700px) {
+  .hero-section {
+    height: 95vh;
+  }
+
+  .hero-details .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-details .hero-subtitle {
+    font-size: 1.2rem;
+  }
+
+  .hero-details .hero-description {
+    font-size: 1rem;
+    margin-bottom: 25px;
+  }
+
+  .hero-tech {
+    margin-top: 25px;
+  }
+
+  .hero-image {
+    flex: 0 0 280px;
+  }
+
+  .hero-image .profile-image {
+    width: 280px;
+    height: 280px;
+  }
+}

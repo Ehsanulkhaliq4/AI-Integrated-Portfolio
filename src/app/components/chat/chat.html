@@ -1,0 +1,102 @@
+<div class="chat-container">
+  <div class="chat-header">
+    <div class="ai-avatar">🤖</div>
+    <div class="header-info">
+      <h3>AI Portfolio Assistant</h3>
+      <div class="status">
+        <span class="status-dot"></span>
+        Online
+      </div>
+    </div>
+  </div>
+
+  <div #scrollContainer class="chat-messages">
+    <!-- Welcome message -->
+    <div class="welcome-message">
+      <p>💡 <strong>Quick suggestions:</strong></p>
+      <div class="suggestions">
+        <button 
+          *ngFor="let suggestion of quickSuggestions"
+          (click)="useSuggestion(suggestion)"
+          class="suggestion-btn"
+        >
+          {{ suggestion }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Chat messages -->
+    <div 
+      *ngFor="let message of messages" 
+      [class]="'message ' + (message.isUser ? 'user-message' : 'bot-message')"
+    >
+      <div class="message-avatar">
+        {{ message.isUser ? '👤' : '🤖' }}
+      </div>
+      <div class="message-content">
+        <div *ngIf="message.isGeneralKnowledge" class="general-knowledge-badge">
+        🌍 General Knowledge
+        </div>
+        <div 
+          class="message-text" 
+          [class]="'type-' + (message.type || 'text')"
+          [innerHTML]="formatText(message.text)"
+        ></div>
+        
+        <!-- Suggestions -->
+        <div *ngIf="message.suggestions && message.suggestions.length > 0" class="message-suggestions">
+          <button 
+            *ngFor="let suggestion of message.suggestions"
+            (click)="useSuggestion(suggestion)"
+            class="suggestion-btn"
+          >
+            {{ suggestion }}
+          </button>
+        </div>
+        
+        <div class="message-time">
+          {{ message.timestamp | date:'HH:mm' }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Loading indicator -->
+    <div *ngIf="isLoading" class="message bot-message">
+      <div class="message-avatar">🤖</div>
+      <div class="message-content">
+        <div class="typing-indicator">
+          <span>AI is thinking</span>
+          <div class="typing-dots">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chat-input-container">
+    <div class="input-wrapper">
+      <textarea 
+        [(ngModel)]="userInput"
+        (keypress)="onKeyPress($event)"
+        placeholder="Ask me about skills, experience, projects..."
+        rows="1"
+        #textArea
+        (input)="autoResize(textArea)"
+      ></textarea>
+      <button 
+        (click)="sendMessage()" 
+        [disabled]="!userInput.trim() || isLoading"
+        class="send-button"
+        [class.loading]="isLoading"
+      >
+        <svg *ngIf="!isLoading" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+        </svg>
+        <div *ngIf="isLoading" class="loading-spinner"></div>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,11 +1,36 @@
-import { Component, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, ElementRef, signal, ViewChild } from '@angular/core';
+import { Chat } from './components/chat/chat';
 
 @Component({
   selector: 'app-root',
-  imports: [],
+  imports: [CommonModule, Chat],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('my-ai-portfolio');
+   title = 'Ehsan ul khaliq - Portfolio';
+
+    @ViewChild('chatSection') chatSection!: ElementRef;
+
+  downloadCV() {
+    // Replace with your actual CV file path
+    const cvUrl = '../assets/Ehsan_ul_khaliq.pdf';
+    
+    // Create a temporary link to trigger download
+    const link = document.createElement('a');
+    link.href = cvUrl;
+    link.download = 'Ehsan_Ul_Khaliq_CV.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  scrollToChat() {
+    // Scroll to the chat section smoothly
+    this.chatSection.nativeElement.scrollIntoView({ 
+      behavior: 'smooth',
+      block: 'start'
+    });
+  }
 }
