@@ -297,9 +297,9 @@
 
 @media (max-width: 968px) {
   .hero-section {
-    height: auto; /* Change from 95vh to auto for mobile */
-    min-height: 80vh; /* Minimum height instead of fixed */
-    padding: 80px 20px 40px; /* More padding top for navbar */
+    height: auto;
+    min-height: 80vh;
+    padding: 80px 20px 40px;
   }
   
   .hero-section .hero-content {
@@ -380,30 +380,40 @@
 
 @media (max-width: 480px) {
   .hero-section {
-    height: 95vh;
-    padding: 0 10px;
+    padding: 90px 10px 30px;
   }
-  
+
   .hero-section .hero-content {
     gap: 30px;
-  }
-
-  .hero-details .hero-title {
-    font-size: 2.2rem;
-  }
-
-  .hero-details .hero-subtitle {
-    font-size: 1.1rem;
+    padding: 0 10px;
   }
 
   .hero-image {
-    flex: 0 0 250px;
+    flex: 0 0 200px;
   }
 
   .hero-image .profile-image {
-    width: 250px;
-    height: 250px;
-    border-width: 6px;
+    width: 200px;
+    height: 200px;
+    border-width: 4px;
+  }
+
+  .hero-details .hero-title {
+    font-size: 1.8rem;
+  }
+
+  .hero-details .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .hero-details .hero-description {
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+  }
+
+  .hero-tech {
+    gap: 8px;
+    margin-top: 20px;
   }
 
   .tech-tag {
@@ -411,9 +421,6 @@
     font-size: 12px;
   }
 
-  .portfolio-footer {
-    padding: 40px 15px;
-  }
 }
 
 /* For very small screens */
