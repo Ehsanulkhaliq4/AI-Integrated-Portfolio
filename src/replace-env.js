@@ -15,7 +15,7 @@ let content = fs.readFileSync(envFilePath, 'utf8');
 
 // Replace Netlify environment variables
 const envVars = {
-  'NETLIFY_OPENAI_API_KEY': process.env.OPENAI_API_KEY || ''
+  'openAIApiKey': process.env.openAIApiKey || ''
 };
 
 Object.keys(envVars).forEach(key => {
