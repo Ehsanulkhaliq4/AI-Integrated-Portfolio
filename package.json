@@ -1,12 +1,15 @@
 {
   "name": "my-ai-portfolio",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "build": "node replace-env.js && ng build --configuration=production",
+    "build:dev": "ng build",
+    "build:prod": "node replace-env.js && ng build --configuration=production"
   },
   "prettier": {
     "printWidth": 100,

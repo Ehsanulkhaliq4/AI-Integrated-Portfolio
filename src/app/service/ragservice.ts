@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, delay, delayWhen, map, Observable, of, retryWhen, scan, timeout, timer } from 'rxjs';
+import { environment } from '../../enviornments/environment';
 
 
 export interface RAGResponse {
@@ -104,6 +105,10 @@ export class RAGService {
     'mysql', 'postgresql', 'angular', 'xstate', 'api', 'rest', 'microservices'
   ];
 
+ 
+  private openAIApiKey =  environment.openAIApiKey;
+  private openAIApiUrl = environment.openAIApiUrl;
+
   constructor(private http: HttpClient) { }
   
   getAIResponse(userMessage: string): Observable<RAGResponse> {
@@ -156,6 +161,19 @@ export class RAGService {
       timeout(15000),
       retryWhen(errors => 
         errors.pipe(
+          // tap(error => {
+          //   if (error.status === 429) {
+          //     console.log('🔄 Rate limit hit, retrying in 5 seconds...');
+          //   }
+          // }),
+          // delayWhen(error => error.status === 429 ? timer(5000) : timer(2000)),
+          // delayWhen((error, retryCount) => {
+          //   if (retryCount >= 3) {
+          //     throw error;
+          //   }
+          //   return timer(2000 * Math.pow(2, retryCount));
+          // })
+
           scan((retryCount: number, error: any) => {
           if (error.status === 429 && retryCount < 3) {
             console.warn(`⚠️ Rate limit hit — retrying after ${retryCount + 1} seconds...`);

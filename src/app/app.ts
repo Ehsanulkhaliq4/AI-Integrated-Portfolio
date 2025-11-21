@@ -26,4 +26,11 @@ export class App {
     document.body.removeChild(link);
   }
 
+  scrollToChat() {
+    // Scroll to the chat section smoothly
+    this.chatSection.nativeElement.scrollIntoView({ 
+      behavior: 'smooth',
+      block: 'start'
+    });
+  }
 }
