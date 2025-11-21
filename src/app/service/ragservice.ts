@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, delay, delayWhen, map, Observable, of, retryWhen, scan, timeout, timer } from 'rxjs';
-import { environment } from '../../enviornments/environment';
+import { environment } from '../../enviornments/enviornments';
 
 
 export interface RAGResponse {
@@ -132,8 +132,6 @@ export class RAGService {
 
 
   private getOpenAIResponse(userMessage: string, isPortfolioContext: boolean = false): Observable<RAGResponse> {
-    console.log('🚀 Starting OpenAI request...');
-    
     if (!this.isValidApiKey()) {
       return of(this.getNoAPIKeyResponse());
     }
@@ -161,19 +159,6 @@ export class RAGService {
       timeout(15000),
       retryWhen(errors => 
         errors.pipe(
-          // tap(error => {
-          //   if (error.status === 429) {
-          //     console.log('🔄 Rate limit hit, retrying in 5 seconds...');
-          //   }
-          // }),
-          // delayWhen(error => error.status === 429 ? timer(5000) : timer(2000)),
-          // delayWhen((error, retryCount) => {
-          //   if (retryCount >= 3) {
-          //     throw error;
-          //   }
-          //   return timer(2000 * Math.pow(2, retryCount));
-          // })
-
           scan((retryCount: number, error: any) => {
           if (error.status === 429 && retryCount < 3) {
             console.warn(`⚠️ Rate limit hit — retrying after ${retryCount + 1} seconds...`);
@@ -194,15 +179,11 @@ export class RAGService {
     const isValid = !!(this.openAIApiKey && 
                    this.openAIApiKey !== 'your-openai-api-key-here' && 
                    this.openAIApiKey.startsWith('sk-'));
-    console.log('🔑 API Key validation:', { isValid, keyPrefix: this.openAIApiKey?.substring(0, 10) + '...' });
     return isValid;
   }
 
   private handleOpenAISuccess(response: any, userMessage: string, isPortfolioContext: boolean): RAGResponse {
-    console.log('✅ OpenAI request successful:', response);
-    
     if (!response.choices || !response.choices[0] || !response.choices[0].message) {
-      console.error('❌ Invalid response structure from OpenAI');
       return this.getAPIErrorResponse(userMessage);
     }
 

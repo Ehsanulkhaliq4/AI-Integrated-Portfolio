@@ -339,7 +339,8 @@
   }
   
   .hero-section .hero-content {
-    gap: 40px;
+    gap: 10px;
+    padding-top: 50px;
   }
 
   .hero-details .hero-title {
