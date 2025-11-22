@@ -1,4 +1,5 @@
 export const environment = {
-  production: false,
- 
+  production: true,
+   openAIApiKey: '', // Use dummy key for development
+   openAIApiUrl: 'https://api.openai.com/v1/chat/completions'
 };

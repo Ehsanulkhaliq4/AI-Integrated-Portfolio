@@ -106,7 +106,7 @@ export class RAGService {
   ];
 
  
-  private openAIApiKey =  environment.openAIApiKey;
+  private openAIApiKey =  (window as any).process?.env?.openAIApiKey || environment.openAIApiKey;
   private openAIApiUrl = environment.openAIApiUrl;
 
   constructor(private http: HttpClient) { }

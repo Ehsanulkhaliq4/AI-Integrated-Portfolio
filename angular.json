@@ -49,12 +49,6 @@
                   "maximumError": "20kB"
                 }
               ],
-              "fileReplacements": [
-                {
-                  "replace": "src/enviornments/enviornments.ts",
-                  "with": "src/enviornments/environment.prod.ts"
-                }
-              ],
                "outputPath": "dist/my-ai-portfolio",
               "outputHashing": "all"
             },
