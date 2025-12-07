@@ -216,7 +216,10 @@ export class RAGService {
         'What are your Java skills?',
         'Tell me about your banking projects',
         'What is your experience with Spring Boot?',
-        'How can I contact you?'
+        'How can I contact you?',
+        'What banking projects have you done?',
+        'Tell me about your Spring Boot experience',
+        'How can I reach you?'
       ]
     };
   }
@@ -259,6 +262,14 @@ export class RAGService {
         'What projects have you worked on?'
       ];
     }
+
+     if (lowerMessage.includes('backend') || lowerMessage.includes('server')) {
+    return ['Tell me about your Java backend projects', 'What banking systems have you built?'];
+  }
+  
+  if (lowerMessage.includes('frontend') || lowerMessage.includes('ui')) {
+    return ['I also work with Angular for frontend', 'See my full-stack learning project'];
+  }
     
     return [
       'What are your technical skills?',
@@ -335,6 +346,15 @@ export class RAGService {
       };
     }
 
+    if (lowerMessage.includes('code example') || lowerMessage.includes('show me code')) {
+  return {
+    answer: `Here's a simple Spring Boot REST endpoint I've worked with:\n\n\`\`\`java\n@RestController\npublic class CreditController {\n    @GetMapping("/credit/{id}")\n    public ResponseEntity<Credit> getCredit(@PathVariable Long id) {\n        // Business logic here\n    }\n}\n\`\`\``,
+    type: 'code',
+    sources: ['Java/Spring Experience'],
+    suggestions: ['Tell me more about your banking projects', 'What other frameworks do you know?']
+  };
+}
+
     if (lowerMessage.includes('education') || lowerMessage.includes('degree') || lowerMessage.includes('university')) {
       return {
         answer: `**Educational Background:**\n\n**University Of Okara** (October 2020 – July 2024)\n• Bachelor of Science in Computer Science\n• Relevant Coursework: Data Structures, Algorithms Analysis, Databases, Operating Systems, Computer Networking, Information Security, Artificial Intelligence\n\n**Superior Group Of Colleges** (Aug 2018 – Sep 2020)\n• Fsc (Pre-Engineering)\n\nMy computer science education provided me with strong fundamentals in algorithms, data structures, and system design, which I apply daily in my backend development work.`,
@@ -343,6 +363,9 @@ export class RAGService {
         suggestions: ['What are your technical skills?', 'Tell me about your experience', 'What projects have you done?']
       };
     }
+    
+
+
 
     // Default portfolio response
     return {
