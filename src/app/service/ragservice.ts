@@ -106,10 +106,12 @@ export class RAGService {
   ];
 
  
-  private openAIApiKey =  (window as any).process?.env?.openAIApiKey || environment.openAIApiKey;
+  private openAIApiKey = environment.openAIApiKey;
   private openAIApiUrl = environment.openAIApiUrl;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    console.log('OpenAI API Key:', this.openAIApiKey);
+  }
   
   getAIResponse(userMessage: string): Observable<RAGResponse> {
     let response$: Observable<RAGResponse>;
