@@ -44,3 +44,6 @@ Thumbs.db
 # Environment files
 .env
 .env.local
+
+# Local Netlify folder
+.netlify
