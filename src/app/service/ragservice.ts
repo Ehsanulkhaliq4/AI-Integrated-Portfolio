@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, delay, delayWhen, map, Observable, of, retryWhen, scan, timeout, timer } from 'rxjs';
-import { environment } from '../../enviornments/enviornments.prod';
+import { environment } from '../../environments/environment.prod';
 
 
 export interface RAGResponse {
