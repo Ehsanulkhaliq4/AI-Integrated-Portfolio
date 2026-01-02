@@ -8,7 +8,7 @@
   },
   "include": [
     "src/**/*.ts"
-  ],
+, "set-env.ts"  ],
   "exclude": [
     "src/**/*.spec.ts"
   ]

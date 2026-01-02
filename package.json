@@ -4,12 +4,12 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "build": "ng build --configuration=production",
     "build:dev": "ng build",
-    "build:prod": "ng build --configuration=production"
+    "build:prod": "ng build --configuration=production",
+    "config": "node set-env.ts"
   },
   "prettier": {
     "printWidth": 100,
@@ -44,6 +44,7 @@
     "@angular/cli": "^20.1.6",
     "@angular/compiler-cli": "^20.1.0",
     "@types/jasmine": "~5.1.0",
+    "@types/node": "^25.0.3",
     "jasmine-core": "~5.8.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
