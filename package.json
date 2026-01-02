@@ -6,7 +6,7 @@
     "start": "ng serve",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "build": "node set-env.js && ng build --configuration=production",
+    "build": "node src/set-env.js && ng build --configuration=production",
     "build:dev": "ng build",
     "build:prod": "ng build --configuration=production",
     "config": "node set-env.ts"
