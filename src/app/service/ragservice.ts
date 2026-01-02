@@ -178,10 +178,9 @@ export class RAGService {
   }
 
   private isValidApiKey(): boolean {
-    const isValid = !!(this.openAIApiKey && 
-                   this.openAIApiKey !== 'your-openai-api-key-here' && 
-                   this.openAIApiKey.startsWith('sk-'));
-    return isValid;
+    return !!(this.openAIApiKey && 
+            this.openAIApiKey.length > 20 && 
+            !this.openAIApiKey.includes('PLACEHOLDER'));
   }
 
   private handleOpenAISuccess(response: any, userMessage: string, isPortfolioContext: boolean): RAGResponse {

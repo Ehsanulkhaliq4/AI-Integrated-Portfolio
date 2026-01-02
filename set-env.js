@@ -1,5 +1,7 @@
 const fs = require('fs');
-const targetPath = './src/environments/environment.prod.ts'; // This path is now correct from the root
+
+// Path to the environment file
+const targetPath = './src/environments/environment.prod.ts';
 
 const envConfigFile = `export const environment = {
    production: true,
