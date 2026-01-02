@@ -3,8 +3,8 @@ const targetPath = './src/environments/environment.prod.ts'; // This path is now
 
 const envConfigFile = `export const environment = {
    production: true,
-   apiKey: '${process.env.NG_APP_API_KEY_PLACEHOLDER}',
-   apiUrl: '${process.env.openAIApiUrl || 'https://api.openai.com/v1'}'
+   openAIApiKey: '${process.env.NG_APP_API_KEY_PLACEHOLDER}',
+   openAIApiUrl: '${process.env.openAIApiUrl || 'https://api.openai.com/v1/chat/completions'}'
 };
 `;
 
