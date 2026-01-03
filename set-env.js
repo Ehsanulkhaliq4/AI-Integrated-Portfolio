@@ -9,7 +9,7 @@ const apiKey = process.env.NG_APP_API_KEY_PLACEHOLDER;
 const envConfigFile = `export const environment = {
    production: true,
    openAIApiKey: '${apiKey}',
-   openAIApiUrl: '${process.env.openAIApiUrl || '/.netlify/functions/chat'}'
+   openAIApiUrl: '${'/.netlify/functions/chat'}'
 };
 `;
 
