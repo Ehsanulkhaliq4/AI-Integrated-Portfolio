@@ -111,6 +111,8 @@ export class RAGService {
 
   constructor(private http: HttpClient) {
     console.log('RAGService initialized with OpenAI API URL:', this.openAIApiUrl);
+    console.log('RAGService initialized with OpenAI API Key:', this.openAIApiKey);
+    
     
   }
   
