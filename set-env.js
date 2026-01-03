@@ -4,12 +4,13 @@ const path = require('path');
 const targetPath = path.join(__dirname, 'src', 'environments', 'environment.prod.ts');
 
 const apiKey = process.env.NG_APP_API_KEY_PLACEHOLDER;
+const apiUrl = process.env.NG_APP_API_URL_PLACEHOLDER;
 
 
 const envConfigFile = `export const environment = {
    production: true,
    openAIApiKey: '${apiKey}',
-   openAIApiUrl: '${'/.netlify/functions/chat'}'
+   openAIApiUrl: '${apiUrl}'
 };
 `;
 

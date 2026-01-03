@@ -140,7 +140,7 @@ export class RAGService {
     if (!this.isValidApiKey()) {
       return of(this.getNoAPIKeyResponse());
     }
-    const functionUrl = '/.netlify/functions/chat';
+    // const functionUrl = '/.netlify/functions/chat';
     const systemMessage = isPortfolioContext 
       ? `You are an AI assistant for Ehsan Ul Khaliq's portfolio website. Be concise and focus on portfolio information.`
       : `You are a helpful AI assistant. Provide accurate, informative answers to general knowledge questions.`;
@@ -155,7 +155,7 @@ export class RAGService {
       temperature: 0.7
     };
 
-    return this.http.post<any>(functionUrl, requestBody, {
+    return this.http.post<any>(this.openAIApiUrl, requestBody, {
       headers: {
         'Authorization': `Bearer ${this.openAIApiKey}`,
         'Content-Type': 'application/json'
