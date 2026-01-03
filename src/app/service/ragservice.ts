@@ -109,7 +109,10 @@ export class RAGService {
   private openAIApiKey = environment.openAIApiKey;
   private openAIApiUrl = environment.openAIApiUrl;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    console.log('RAGService initialized with OpenAI API URL:', this.openAIApiUrl);
+    
+  }
   
   getAIResponse(userMessage: string): Observable<RAGResponse> {
     let response$: Observable<RAGResponse>;
@@ -152,7 +155,7 @@ export class RAGService {
 
     return this.http.post<any>(functionUrl, requestBody, {
       headers: {
-        // 'Authorization': `Bearer ${this.openAIApiKey}`,
+        'Authorization': `Bearer ${this.openAIApiKey}`,
         'Content-Type': 'application/json'
       }
     }).pipe(
