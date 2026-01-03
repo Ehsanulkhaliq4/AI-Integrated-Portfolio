@@ -152,7 +152,7 @@ export class RAGService {
 
     return this.http.post<any>(functionUrl, requestBody, {
       headers: {
-        'Authorization': `Bearer ${this.openAIApiKey}`,
+        // 'Authorization': `Bearer ${this.openAIApiKey}`,
         'Content-Type': 'application/json'
       }
     }).pipe(
