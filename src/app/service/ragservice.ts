@@ -140,7 +140,6 @@ export class RAGService {
     if (!this.isValidApiKey()) {
       return of(this.getNoAPIKeyResponse());
     }
-    // const functionUrl = '/.netlify/functions/chat';
     const systemMessage = isPortfolioContext 
       ? `You are an AI assistant for Ehsan Ul Khaliq's portfolio website. Be concise and focus on portfolio information.`
       : `You are a helpful AI assistant. Provide accurate, informative answers to general knowledge questions.`;
@@ -180,10 +179,11 @@ export class RAGService {
     );
   }
 
-  private isValidApiKey(): boolean {
-    return !!(this.openAIApiKey && 
-            this.openAIApiKey.length > 20 && 
-            !this.openAIApiKey.includes('PLACEHOLDER'));
+   private isValidApiKey(): boolean {
+    const isValid = !!(this.openAIApiKey && 
+                   this.openAIApiKey !== 'your-openai-api-key-here' && 
+                   this.openAIApiKey.startsWith('sk-'));
+    return isValid;
   }
 
   private handleOpenAISuccess(response: any, userMessage: string, isPortfolioContext: boolean): RAGResponse {
