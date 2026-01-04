@@ -102,7 +102,8 @@ export class RAGService {
     'project', 'education', 'java', 'spring', 'quarkus', 'bank', 'banking',
     'tereSol', 'technogate', 'bank al habib', 'cms', 'credit management',
     'contact', 'email', 'phone', 'linkedin', 'github', 'backend', 'developer',
-    'mysql', 'postgresql', 'angular', 'xstate', 'api', 'rest', 'microservices'
+    'mysql', 'postgresql', 'angular', 'xstate', 'api', 'rest', 'microservices',
+    'why', 'hire', 'special', 'fit', 'benefit', 'background', 'security', 'compliance', 'safe', 'standards', 'reliable'
   ];
 
 
