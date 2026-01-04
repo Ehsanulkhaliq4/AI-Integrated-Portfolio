@@ -93,29 +93,25 @@ export class RAGService {
     - Testing: API testing with Postman
   `;
 
- 
-  
+
+
 
   // Portfolio-related keywords for detection
   private portfolioKeywords = [
-    'ehsan', 'khaliq', 'portfolio', 'resume', 'cv', 'experience', 'skill', 
+    'ehsan', 'khaliq', 'portfolio', 'resume', 'cv', 'experience', 'skill',
     'project', 'education', 'java', 'spring', 'quarkus', 'bank', 'banking',
     'tereSol', 'technogate', 'bank al habib', 'cms', 'credit management',
     'contact', 'email', 'phone', 'linkedin', 'github', 'backend', 'developer',
     'mysql', 'postgresql', 'angular', 'xstate', 'api', 'rest', 'microservices'
   ];
 
- 
+
   private openAIApiKey = environment.openAIApiKey;
   private openAIApiUrl = environment.openAIApiUrl;
 
   constructor(private http: HttpClient) {
-    console.log('RAGService initialized with OpenAI API URL:', this.openAIApiUrl);
-    console.log('RAGService initialized with OpenAI API Key:', this.openAIApiKey);
-    
-    
   }
-  
+
   getAIResponse(userMessage: string): Observable<RAGResponse> {
     let response$: Observable<RAGResponse>;
     if (this.isPortfolioQuestion(userMessage)) {
@@ -130,7 +126,7 @@ export class RAGService {
 
   private isPortfolioQuestion(userMessage: string): boolean {
     const lowerMessage = userMessage.toLowerCase();
-    return this.portfolioKeywords.some(keyword => 
+    return this.portfolioKeywords.some(keyword =>
       lowerMessage.includes(keyword.toLowerCase())
     );
   }
@@ -140,7 +136,7 @@ export class RAGService {
     if (!this.isValidApiKey()) {
       return of(this.getNoAPIKeyResponse());
     }
-    const systemMessage = isPortfolioContext 
+    const systemMessage = isPortfolioContext
       ? `You are an AI assistant for Ehsan Ul Khaliq's portfolio website. Be concise and focus on portfolio information.`
       : `You are a helpful AI assistant. Provide accurate, informative answers to general knowledge questions.`;
 
@@ -161,17 +157,17 @@ export class RAGService {
       }
     }).pipe(
       timeout(15000),
-      retryWhen(errors => 
+      retryWhen(errors =>
         errors.pipe(
           scan((retryCount: number, error: any) => {
-          if (error.status === 429 && retryCount < 3) {
-            console.warn(`⚠️ Rate limit hit — retrying after ${retryCount + 1} seconds...`);
-            return retryCount + 1;
-          } else {
-            throw error;
-          }
-        }, 0),
-        delayWhen((retryCount: number) => timer(retryCount * 2000))
+            if (error.status === 429 && retryCount < 3) {
+              console.warn(`⚠️ Rate limit hit — retrying after ${retryCount + 1} seconds...`);
+              return retryCount + 1;
+            } else {
+              throw error;
+            }
+          }, 0),
+          delayWhen((retryCount: number) => timer(retryCount * 2000))
         )
       ),
       map(response => this.handleOpenAISuccess(response, userMessage, isPortfolioContext)),
@@ -179,10 +175,10 @@ export class RAGService {
     );
   }
 
-   private isValidApiKey(): boolean {
-    const isValid = !!(this.openAIApiKey && 
-                   this.openAIApiKey !== 'your-openai-api-key-here' && 
-                   this.openAIApiKey.startsWith('sk-'));
+  private isValidApiKey(): boolean {
+    const isValid = !!(this.openAIApiKey &&
+      this.openAIApiKey !== 'your-openai-api-key-here' &&
+      this.openAIApiKey.startsWith('sk-'));
     return isValid;
   }
 
@@ -202,11 +198,11 @@ export class RAGService {
 
   private handleOpenAIError(error: any, userMessage: string): Observable<RAGResponse> {
     console.error('❌ OpenAI API error:', error);
-    
+
     if (error.status === 429) {
       return of(this.getRateLimitResponse(userMessage));
     }
-    
+
     return of(this.getAPIErrorResponse(userMessage));
   }
 
@@ -258,7 +254,7 @@ export class RAGService {
 
   private getRelevantSuggestions(userMessage: string): string[] {
     const lowerMessage = userMessage.toLowerCase();
-    
+
     if (lowerMessage.includes('tech') || lowerMessage.includes('programming') || lowerMessage.includes('code')) {
       return [
         'What are your Java skills?',
@@ -267,14 +263,14 @@ export class RAGService {
       ];
     }
 
-     if (lowerMessage.includes('backend') || lowerMessage.includes('server')) {
-    return ['Tell me about your Java backend projects', 'What banking systems have you built?'];
-  }
-  
-  if (lowerMessage.includes('frontend') || lowerMessage.includes('ui')) {
-    return ['I also work with Angular for frontend', 'See my full-stack learning project'];
-  }
-    
+    if (lowerMessage.includes('backend') || lowerMessage.includes('server')) {
+      return ['Tell me about your Java backend projects', 'What banking systems have you built?'];
+    }
+
+    if (lowerMessage.includes('frontend') || lowerMessage.includes('ui')) {
+      return ['I also work with Angular for frontend', 'See my full-stack learning project'];
+    }
+
     return [
       'What are your technical skills?',
       'Tell me about your banking projects',
@@ -286,7 +282,8 @@ export class RAGService {
   // Portfolio response methods (your existing logic)
   private generatePortfolioResponse(userMessage: string): RAGResponse {
     const lowerMessage = userMessage.toLowerCase();
-    
+    const message = userMessage.toLowerCase();
+
     if (lowerMessage.includes('skill') || lowerMessage.includes('technology') || lowerMessage.includes('tech stack')) {
       return {
         answer: `As a Backend Developer with 1+ years of experience, here's my technical expertise:\n\n**Core Backend Technologies:**\n• Java (Primary Language) - Spring Boot, Quarkus\n• Node.js for backend services\n• RESTful API Development\n• Microservices Architecture\n\n**Databases & ORM:**\n• MySQL, PostgreSQL\n• Hibernate ORM\n• Database Design & Optimization\n\n**Frontend & State Management:**\n• Angular for frontend development\n• XSTATE for state management\n• HTML/CSS, JavaScript\n\n**Development Tools:**\n• Git, VS Code, IntelliJ IDEA, Eclipse\n• Postman/Thunder Client for API Testing\n• Taiga for project management\n\n**Domain Expertise:**\n• Core Banking Systems\n• Credit Management Systems\n• Consumer Management Systems\n• Video Streaming Applications`,
@@ -332,6 +329,19 @@ export class RAGService {
       };
     }
 
+    if (lowerMessage.includes('skill') || lowerMessage.includes('tech')) {
+      return {
+        answer: `My technical ecosystem is built for scalable backend performance:
+    * **Primary Languages**: Java (Expert), JavaScript[cite: 48, 49].
+    * **Frameworks**: Quarkus (Cloud-native Java) and Spring Boot[cite: 38, 42].
+    * **State Management**: XState for complex banking workflows[cite: 21, 33].
+    * **Infrastructure**: RESTful APIs, Microservices, and PostgreSQL/MySQL[cite: 37, 42].
+    * **Tools**: Git for versioning and Taiga for Agile project management[cite: 49].`,
+        type: 'list',
+        sources: ['Technical Skills Section']
+      };
+    }
+
     if (lowerMessage.includes('contact') || lowerMessage.includes('email') || lowerMessage.includes('phone') || lowerMessage.includes('hire')) {
       return {
         answer: `**Contact Information:**\n\n📧 **Email:** ehsanulkhaliq274@gmail.com\n📞 **Phone:** +92348 7350330\n💼 **LinkedIn:** linkedin.com/in/ehsanulkhaliq\n🐙 **GitHub:** github.com/Ehsanulkhaliq4\n📍 **Location:** Renala khurd, Okara, Punjab, Pakistan\n\nI'm currently working as a Software Design Engineer at TeReSol and open to new opportunities in backend development, particularly in Java, Spring Boot, Quarkus, and banking systems.\n\nFeel free to reach out for:\n• Backend development positions\n• Java/Spring Boot/Quarkus projects\n• Banking/financial system development\n• API development and integration\n• Full-stack development roles`,
@@ -351,13 +361,13 @@ export class RAGService {
     }
 
     if (lowerMessage.includes('code example') || lowerMessage.includes('show me code')) {
-  return {
-    answer: `Here's a simple Spring Boot REST endpoint I've worked with:\n\n\`\`\`java\n@RestController\npublic class CreditController {\n    @GetMapping("/credit/{id}")\n    public ResponseEntity<Credit> getCredit(@PathVariable Long id) {\n        // Business logic here\n    }\n}\n\`\`\``,
-    type: 'code',
-    sources: ['Java/Spring Experience'],
-    suggestions: ['Tell me more about your banking projects', 'What other frameworks do you know?']
-  };
-}
+      return {
+        answer: `Here's a simple Spring Boot REST endpoint I've worked with:\n\n\`\`\`java\n@RestController\npublic class CreditController {\n    @GetMapping("/credit/{id}")\n    public ResponseEntity<Credit> getCredit(@PathVariable Long id) {\n        // Business logic here\n    }\n}\n\`\`\``,
+        type: 'code',
+        sources: ['Java/Spring Experience'],
+        suggestions: ['Tell me more about your banking projects', 'What other frameworks do you know?']
+      };
+    }
 
     if (lowerMessage.includes('education') || lowerMessage.includes('degree') || lowerMessage.includes('university')) {
       return {
@@ -367,9 +377,30 @@ export class RAGService {
         suggestions: ['What are your technical skills?', 'Tell me about your experience', 'What projects have you done?']
       };
     }
-    
+     if (this.matches(message, ['why', 'hire', 'special', 'fit', 'benefit', 'background'])) {
+      return {
+        answer: `I offer a unique blend of academic excellence from the University of Okara [cite: 5] and hands-on experience in the high-stakes banking sector[cite: 21]. 
+      \n\n**Key Value Drivers:**
+      * **Fintech Specialist**: Currently engineering Credit and Consumer Management systems for Bank Al Habib[cite: 32, 38].
+      * **Modern Java Expert**: Leveraging Quarkus and Spring Boot to build resilient microservices[cite: 38, 42].
+      * **System Architect**: Focused on service design and core architecture within TeReSol's development team[cite: 24].`,
+        type: 'text',
+        sources: ['Professional Summary'],
+        suggestions: ['Tell me about your banking projects', 'What is your tech stack?']
+      };
+    }
 
-
+     if (this.matches(message, ['security', 'compliance', 'safe', 'standards', 'reliable'])) {
+      return {
+        answer: `Reliability is central to my development philosophy, especially given my work on banking modules[cite: 35].
+      * **Data Integrity**: I ensure secure handling of sensitive financial data in compliance with industry standards[cite: 23].
+      * **State Management**: Using XState to ensure predictable and error-free business workflows[cite: 21, 34].
+      * **Rigorous Testing**: I perform comprehensive API testing via Postman to maintain high system reliability[cite: 36, 46].`,
+        type: 'list',
+        sources: ['Banking Standards & Testing'],
+        suggestions: ['How do you use XState?', 'What databases do you use?']
+      };
+    }
 
     // Default portfolio response
     return {
@@ -383,6 +414,9 @@ export class RAGService {
         'How can I contact you?'
       ]
     };
+  }
+  private matches(msg: string, keywords: string[]): boolean {
+    return keywords.some(k => msg.includes(k));
   }
 
 }
