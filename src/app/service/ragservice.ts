@@ -16,6 +16,7 @@ export interface RAGResponse {
   providedIn: 'root',
 })
 export class RAGService {
+  private readonly BOT_NAME = "Ehsan's AI Assistant";
   private knowledgeBase = `
     EHSAN UL KHALIQ - Backend Developer Profile
     
@@ -138,8 +139,8 @@ export class RAGService {
       return of(this.getNoAPIKeyResponse());
     }
     const systemMessage = isPortfolioContext
-      ? `You are an AI assistant for Ehsan Ul Khaliq's portfolio website. Be concise and focus on portfolio information.`
-      : `You are a helpful AI assistant. Provide accurate, informative answers to general knowledge questions.`;
+      ? `You are an AI assistant for Ehsan Ul Khaliq's portfolio website. You are an AI assistant for a portfolio website. Use this knowledge base to answer questions: ${this.knowledgeBase} Be concise and focus on portfolio information.`
+      : `You are a helpful Portfolio assistant. Provide accurate, informative answers to ehsan portfolio questions.`;
 
     const requestBody = {
       model: 'gpt-4.1-mini',
@@ -378,7 +379,7 @@ export class RAGService {
         suggestions: ['What are your technical skills?', 'Tell me about your experience', 'What projects have you done?']
       };
     }
-     if (this.matches(message, ['why', 'hire', 'special', 'fit', 'benefit', 'background'])) {
+    if (this.matches(message, ['why', 'hire', 'special', 'fit', 'benefit', 'background'])) {
       return {
         answer: `I offer a unique blend of academic excellence from the University of Okara [cite: 5] and hands-on experience in the high-stakes banking sector[cite: 21]. 
       \n\n**Key Value Drivers:**
@@ -391,7 +392,7 @@ export class RAGService {
       };
     }
 
-     if (this.matches(message, ['security', 'compliance', 'safe', 'standards', 'reliable'])) {
+    if (this.matches(message, ['security', 'compliance', 'safe', 'standards', 'reliable'])) {
       return {
         answer: `Reliability is central to my development philosophy, especially given my work on banking modules[cite: 35].
       * **Data Integrity**: I ensure secure handling of sensitive financial data in compliance with industry standards[cite: 23].
